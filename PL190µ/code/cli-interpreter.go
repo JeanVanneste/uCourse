@@ -1,6 +1,6 @@
-// cli.go
+// cli-interpreter.go
 // Author: Sébastien Combéfis
-// Version: February 22, 2020
+// Version: February 23, 2020
 
 package main
 
