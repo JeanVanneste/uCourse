@@ -1,12 +1,11 @@
 # sensorsim.py
 # Author: Sébastien Combéfis
-# Version: March 5, 2020
+# Version: March 7, 2020
 
 import argparse
 import json
 import random
 import time
-import urllib.parse
 import urllib.request
 
 MIN_TEMP = -10
