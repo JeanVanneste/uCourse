@@ -7,26 +7,26 @@
 
 import argparse
 import json
-import unittest
+import string
 
 def compute_stats(text_file):
     f = open(text_file, 'r')
 
     words = []
 
-    for word in f.read().split():
+    # Get rid of non-ascii characters
+    for word in f.read().encode('ascii', errors='ignore').decode().split():
         words.append(word.lower())
 
     f.close()
 
     different_words = {}
     for word in words:
+        word = del_punctuation(word)
         if word in different_words:
             different_words[word] += 1
         else:
             different_words[word] = 1
-    
-    #print(different_words)
 
     return different_words
 
@@ -37,6 +37,11 @@ def display_to_stdout(stats):
 def save_to_file(stats, out_file):
     with open(out_file, 'w') as f:
         json.dump(stats, f)
+
+def del_punctuation(word):
+    translator = str.maketrans('','', string.punctuation)
+    return word.translate(translator)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
