@@ -3,11 +3,10 @@
 # Version: March 2, 2020
 
 
-#TODO delete punctuation from text
-
 import argparse
 import json
 import string
+
 
 def compute_stats(text_file):
     f = open(text_file, 'r')
@@ -30,23 +29,27 @@ def compute_stats(text_file):
 
     return different_words
 
+
 def display_to_stdout(stats):
     for word in stats:
         print("{0} | {1}".format(word, stats[word]))
+
 
 def save_to_file(stats, out_file):
     with open(out_file, 'w') as f:
         json.dump(stats, f)
 
+
 def del_punctuation(word):
-    translator = str.maketrans('','', string.punctuation)
+    translator = str.maketrans('', '', string.punctuation)
     return word.translate(translator)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('file', help='corpus text file to analyse')
-    parser.add_argument('-o', '--out', metavar='PATH', help='path to the file where to output the result of the analysis')
+    parser.add_argument('-o', '--out', metavar='PATH',
+                        help='path to the file where to output the result of the analysis')
     args = parser.parse_args()
 
     print('Analysing {0}\n'.format(args.file))
