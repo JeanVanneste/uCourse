@@ -36,8 +36,11 @@ def display_to_stdout(stats):
 
 
 def save_to_file(stats, out_file):
+    different_words = []
+    for word in stats:
+        different_words.append({"word": word, "count": stats[word]})
     with open(out_file, 'w') as f:
-        json.dump(stats, f)
+        json.dump(different_words, f)
 
 
 def del_punctuation(word):
