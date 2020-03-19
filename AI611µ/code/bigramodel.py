@@ -45,9 +45,15 @@ def get_text(filename):
     clean_data = []
     for i in data:
         clean_data.append(i.translate(translator))
+
     return clean_data
 
-# Preprocessed : iterator on sequence
+
+def preprocess_text(sequences):
+    # Preprocessed : iterator on sequence
+    preprocessed = [pad_both_ends(s.split(' '), n=2) for s in sequences]
+    return list(flatten(preprocessed))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -58,4 +64,7 @@ if __name__ == "__main__":
 
     sequences = get_text(args.file)
 
-    print(sequences)
+    tokens = preprocess_text(sequences)
+
+    fd = FreqDist(tokens)
+    print("FreqDist : ", fd['like'])
