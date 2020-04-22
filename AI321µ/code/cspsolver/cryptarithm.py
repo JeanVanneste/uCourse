@@ -1,15 +1,16 @@
 # cryptarithm.py
 # Author: Sébastien Combéfis
-# Version: April 12, 2020
+# Version: April 22, 2020
 
 from cspmodel import Problem, Variable
 from cspconstraint import AllDiff, LinEq
 
 DIGITS = [x for x in range(10)]
+NZ_DIGITS = [x for x in range(1, 10)]
 
 class Cryptarithm(Problem):
     def __init__(self):
-        letters = [Variable(c, DIGITS) for c in 'TWOFUR']
+        letters = [Variable(c, DIGITS) for c in 'WOUR'] + [Variable(c, NZ_DIGITS) for c in 'TF']
         reports = [Variable('X' + str(i + 1), [0, 1]) for i in range(3)]
         constraints = [
             AllDiff(letters),
