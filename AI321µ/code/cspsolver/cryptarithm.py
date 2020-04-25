@@ -1,6 +1,6 @@
 # cryptarithm.py
 # Author: Sébastien Combéfis
-# Version: April 22, 2020
+# Version: April 25, 2020
 
 from cspmodel import Problem, Variable
 from cspconstraint import AllDiff, LinEq
@@ -14,10 +14,10 @@ class Cryptarithm(Problem):
         reports = [Variable('X' + str(i + 1), [0, 1]) for i in range(3)]
         constraints = [
             AllDiff(letters),
-            LinEq([letters[2], letters[5], reports[0]], [2, -1, -10, 0]),
-            LinEq([reports[0], letters[1], letters[4], reports[1]], [1, 2, -1, -10, 0]),
-            LinEq([reports[1], letters[0], letters[2], reports[2]], [1, 2, -1, -10, 0]),
-            LinEq([reports[2], letters[3]], [1, -1, 0])
+            LinEq([letters[1], letters[3], reports[0]], [2, -1, -10, 0]),
+            LinEq([reports[0], letters[0], letters[2], reports[1]], [1, 2, -1, -10, 0]),
+            LinEq([reports[1], letters[4], letters[1], reports[2]], [1, 2, -1, -10, 0]),
+            LinEq([reports[2], letters[5]], [1, -1, 0])
         ]
         super().__init__('Cryptarithm', letters + reports, constraints)
 
