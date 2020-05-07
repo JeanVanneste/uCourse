@@ -46,6 +46,7 @@ def get_text(filename):
     for i in data:
         clean_data.append(i.translate(translator))
 
+    print(clean_data)
     return clean_data
 
 
@@ -67,4 +68,7 @@ if __name__ == "__main__":
     tokens = preprocess_text(sequences)
 
     fd = FreqDist(tokens)
-    print("FreqDist : ", fd['like'])
+    model = bigrams(tokens)
+    cfd = ConditionalFreqDist(model)
+
+    print(cfd.tabulate())
