@@ -46,7 +46,6 @@ def get_text(filename):
     for i in data:
         clean_data.append(i.translate(translator))
 
-    print(clean_data)
     return clean_data
 
 
